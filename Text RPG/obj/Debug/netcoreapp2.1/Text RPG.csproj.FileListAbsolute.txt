@@ -1,0 +1,11 @@
+D:\Documents\Dropbox\Coding\Text RPG\Text RPG\Text RPG\bin\Debug\netcoreapp2.1\Text RPG.deps.json
+D:\Documents\Dropbox\Coding\Text RPG\Text RPG\Text RPG\bin\Debug\netcoreapp2.1\Text RPG.runtimeconfig.json
+D:\Documents\Dropbox\Coding\Text RPG\Text RPG\Text RPG\bin\Debug\netcoreapp2.1\Text RPG.runtimeconfig.dev.json
+D:\Documents\Dropbox\Coding\Text RPG\Text RPG\Text RPG\bin\Debug\netcoreapp2.1\Text RPG.dll
+D:\Documents\Dropbox\Coding\Text RPG\Text RPG\Text RPG\bin\Debug\netcoreapp2.1\Text RPG.pdb
+D:\Documents\Dropbox\Coding\Text RPG\Text RPG\Text RPG\obj\Debug\netcoreapp2.1\Text RPG.csprojAssemblyReference.cache
+D:\Documents\Dropbox\Coding\Text RPG\Text RPG\Text RPG\obj\Debug\netcoreapp2.1\Text RPG.csproj.CoreCompileInputs.cache
+D:\Documents\Dropbox\Coding\Text RPG\Text RPG\Text RPG\obj\Debug\netcoreapp2.1\Text RPG.AssemblyInfoInputs.cache
+D:\Documents\Dropbox\Coding\Text RPG\Text RPG\Text RPG\obj\Debug\netcoreapp2.1\Text RPG.AssemblyInfo.cs
+D:\Documents\Dropbox\Coding\Text RPG\Text RPG\Text RPG\obj\Debug\netcoreapp2.1\Text RPG.dll
+D:\Documents\Dropbox\Coding\Text RPG\Text RPG\Text RPG\obj\Debug\netcoreapp2.1\Text RPG.pdb
