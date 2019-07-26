@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading;
 
 namespace Text_RPG {
-    class Shop {
+    static class Shop {
 
         static string input;
 
@@ -18,7 +18,7 @@ namespace Text_RPG {
         /// <summary>
         /// Sets all of the weapon bought statuses to false
         /// </summary>
-        public static void ResetWeapons() {
+        public static void Reset() {
             for (int i = 0; i < 7; i++)
                 bought[i] = false;
         }
@@ -48,9 +48,9 @@ namespace Text_RPG {
                 Thread.Sleep(Numbers.shortWait);
                 Console.WriteLine("6. ($79)Buy Nuclear Chicken Launcher (+150 dmg)");
                 Thread.Sleep(Numbers.shortWait);
-                Console.WriteLine("7. ($100)Buy Double Sided Dildo (+500 dmg)");
+                Console.WriteLine("7. ($100)Buy Double Sided Dildo (+200 dmg)");
                 Thread.Sleep(Numbers.shortWait);
-                Console.WriteLine("8. ($10)Health Potion (+25 Health)");
+                Console.WriteLine("8. ($10)Health Potion (+30 Health)");
                 Thread.Sleep(Numbers.shortWait);
                 Console.WriteLine("9. Back to lobby");
 

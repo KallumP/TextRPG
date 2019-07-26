@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Text_RPG {
-    class Numbers {
+    static class Numbers {
 
-        public static int shortWait = 25;
+        public static int shortWait = 50;
         //should be 250
 
-        public static int longWait = 500;
+        public static int longWait = 100;
     }
 }

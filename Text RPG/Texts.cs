@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading;
 
 namespace Text_RPG {
-    class Texts {
+    static class Texts {
 
         static bool firstTime = true;
 
@@ -60,7 +60,6 @@ namespace Text_RPG {
 
             //shows the intro if the player chose to see it
             if (!skip) {
-
                 Console.WriteLine("In the year 3046, a great war broke out.");
                 Thread.Sleep(Numbers.longWait);
                 Console.WriteLine("All technology was destroyed");
@@ -151,13 +150,10 @@ namespace Text_RPG {
 
             } while (!validInput);
 
-
             Console.Clear();
 
             //shows the tutorial if the player choose to see it
             if (!skip) {
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.BackgroundColor = ConsoleColor.White;
                 Console.WriteLine("You are about to enter the battle fields");
                 Thread.Sleep(Numbers.longWait);
                 Console.WriteLine("This is a dangerous place");
@@ -168,7 +164,7 @@ namespace Text_RPG {
                 Thread.Sleep(Numbers.longWait);
                 Console.WriteLine("In each battle field (B Square), there is a monster that has to be defeated.");
                 Thread.Sleep(Numbers.longWait);
-                Console.WriteLine("In each dungeon (D Square), there is a puzzle that must be solved, and then a boss to fight");
+                Console.WriteLine("In each dungeon (D Square), there is a puzzle that must be solved");
                 Thread.Sleep(Numbers.longWait);
                 Console.WriteLine("Some of the locations can have items, these will help you out in the dungeons");
                 Thread.Sleep(Numbers.longWait);
@@ -185,8 +181,9 @@ namespace Text_RPG {
                 Console.WriteLine("");
                 Console.WriteLine(" _______   _______   _______  ");
                 Console.WriteLine("|       | |       | |       | ");
-                Console.WriteLine("|   B1  | |   B3  | |   B4  | ");
+                Console.WriteLine("|   B1  | |   B3  | |   B5  | ");
                 Console.WriteLine("|_______| |_______| |_______| ");
+                Console.WriteLine();
                 Thread.Sleep(Numbers.longWait * 3);
                 Console.WriteLine("You start of at B1");
                 Thread.Sleep(Numbers.longWait);
@@ -194,15 +191,13 @@ namespace Text_RPG {
                 Thread.Sleep(Numbers.longWait);
                 Console.WriteLine("When you fight a monster, you will take turns to attack");
                 Thread.Sleep(Numbers.longWait);
-                Console.WriteLine("You will you will go first.");
+                Console.WriteLine("You will you always will go first.");
                 Thread.Sleep(Numbers.longWait);
                 Console.WriteLine("In your turn, you can either take a potion and then attack, or attack straight away");
                 Thread.Sleep(Numbers.longWait);
-                Console.WriteLine("Then the monster will attack. This will repeat until you or the monster is dead.");
+                Console.WriteLine("Once you have killed a monster, it will not come back");
                 Thread.Sleep(Numbers.longWait);
-                Console.WriteLine("Once you have killed a monster, it will be dead unti the end of the game");
-                Thread.Sleep(Numbers.longWait);
-                Console.WriteLine("In the dungeons, there will be a puzzle to solve, and then a boss");
+                Console.WriteLine("In the dungeons, there are puzzles to solve");
                 Thread.Sleep(Numbers.longWait);
                 Console.WriteLine("If you don't know what to do in a dungeon; type <help>");
                 Thread.Sleep(Numbers.longWait);
@@ -228,33 +223,39 @@ namespace Text_RPG {
             Console.Clear();
 
             //goes to the lobby
-            Lobby.Choice();
+            Battle.B1();
 
         }
 
         /// <summary>
-        /// Shows the map
+        /// Shows the map and inventory
         /// </summary>
         public static void Map() {
 
-            Console.WriteLine("*map*");
-
+            //shows the map
+            Console.WriteLine("This is a map of the locations");
+            Console.WriteLine(" _______   _______   _______  ");
+            Console.WriteLine("|       | |       | |       | ");
+            Console.WriteLine("|   B4  | |   D2  | |   D4  | ");
+            Console.WriteLine("|_______| |_______| |_______| ");
+            Console.WriteLine("");
+            Console.WriteLine(" _______   _______   _______  ");
+            Console.WriteLine("|       | |       | |       | ");
+            Console.WriteLine("|   B2  | |   D1  | |   D3  | ");
+            Console.WriteLine("|_______| |_______| |_______| ");
+            Console.WriteLine("");
+            Console.WriteLine(" _______   _______   _______  ");
+            Console.WriteLine("|       | |       | |       | ");
+            Console.WriteLine("|   B1  | |   B3  | |   B5  | ");
+            Console.WriteLine("|_______| |_______| |_______| ");
             Console.WriteLine();
 
-            //shows the players inventory
+            //Shows the player's money
             Console.WriteLine("You have £" + Player.money);
             Thread.Sleep(Numbers.shortWait);
-            Console.WriteLine("This is your current inventory");
-            Thread.Sleep(Numbers.shortWait);
-            foreach (Weapon w in Player.weapons) {
-                Console.WriteLine(w.name);
-                Thread.Sleep(Numbers.shortWait);
-            }
 
-
-            Console.WriteLine(Player.healthPotions + "x Health Potions");
-            Thread.Sleep(Numbers.shortWait);
-
+            //shows inventory with potions
+            ShowInventory(true, true);
 
             Console.BackgroundColor = ConsoleColor.Red;
             Console.WriteLine("Press any button to continue (not the power button!)");
@@ -262,6 +263,33 @@ namespace Text_RPG {
             Console.ReadLine();
             Console.Clear();
 
+        }
+
+        /// <summary>
+        /// Shows the inventory 
+        /// </summary>
+        /// <param name="withWeapons">Whether you want to show the weapons</param>
+        /// <param name="withPotions">Whether you want to show the potions</param>
+        public static void ShowInventory(bool withWeapons, bool withPotions) {
+
+            //shows the players inventory
+            Console.WriteLine("This is your current inventory");
+            Thread.Sleep(Numbers.shortWait);
+
+            if (withWeapons) {
+                //goes through each weapon in the players inventory and lists them out
+                for (int i = 1; i <= Player.weapons.Count; i++) {
+
+                    Console.WriteLine(i.ToString() + ". " + Player.weapons[i - 1].name);
+                    Thread.Sleep(Numbers.shortWait);
+                }
+            }
+
+
+            if (withPotions) {
+                Console.WriteLine(Player.healthPotions + "x Health Potions");
+                Thread.Sleep(Numbers.shortWait);
+            }
         }
     }
 }

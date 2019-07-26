@@ -5,7 +5,6 @@ using System.Threading;
 
 namespace Text_RPG {
     static class Lobby {
-
         static string input;
 
         /// <summary>
@@ -25,9 +24,13 @@ namespace Text_RPG {
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("You are in the base");
                 Console.WriteLine("What do you want to do now?");
+                Thread.Sleep(Numbers.longWait);
                 Console.WriteLine("1. Go to the shop");
+                Thread.Sleep(Numbers.longWait);
                 Console.WriteLine("2. Go to the battle field");
+                Thread.Sleep(Numbers.longWait);
                 Console.WriteLine("3. View Map/Inventory");
+                Thread.Sleep(Numbers.longWait);
                 Console.WriteLine("4. Re-read intro");
 
                 //makes sure that the input was a number
@@ -40,7 +43,6 @@ namespace Text_RPG {
                     //gets the input
                     Console.ForegroundColor = ConsoleColor.Green;
                     input = Console.ReadLine();
-
                     Console.ForegroundColor = ConsoleColor.White;
 
                 } while (!Int32.TryParse(input, out ninput));
