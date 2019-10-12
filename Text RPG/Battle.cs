@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace Text_RPG {
-    static class Battle {
+namespace Text_RPG
+{
+    static class Battle
+    {
 
 
         static int ninput;
@@ -18,7 +20,8 @@ namespace Text_RPG {
         /// <summary>
         /// Resets the values in each field
         /// </summary>
-        public static void Reset() {
+        public static void Reset()
+        {
 
             for (int i = 0; i < 9; i++)
                 fields[i] = new Field();
@@ -47,7 +50,8 @@ namespace Text_RPG {
 
         }
 
-        public static void B1() {
+        public static void B1()
+        {
 
             Console.BackgroundColor = ConsoleColor.Red;
             Console.WriteLine("B1");
@@ -55,10 +59,12 @@ namespace Text_RPG {
             Console.WriteLine();
             arrayNumber = 0;
 
-            do {
+            do
+            {
 
                 //there are always two different options if 
-                if (!fields[arrayNumber].MonsterDead()) {
+                if (!fields[arrayNumber].MonsterDead())
+                {
 
                     Console.WriteLine("You see a grizzly monster infront of you!");
                     Thread.Sleep(Numbers.shortWait);
@@ -73,7 +79,8 @@ namespace Text_RPG {
                     Console.WriteLine("4. Return to base");
 
                     //makes sure that the input was a number
-                    do {
+                    do
+                    {
 
                         Console.BackgroundColor = ConsoleColor.Red;
                         Console.WriteLine("Please enter a number");
@@ -87,27 +94,35 @@ namespace Text_RPG {
 
                     } while (!Int32.TryParse(input, out ninput));
 
-                    switch (ninput) {
+                    switch (ninput)
+                    {
                         case 1:
 
-                        Attack();
+                            Attack();
 
-                        break;
+                            break;
+
+                        case 2:
+                            Potion();
+                            break;
+
+                        case 3:
 
                     }
-                } else {
+                }
+                else
+                {
+                    Console.WriteLine("A large monster lays infrong of you");
+
 
                 }
-                
+
             } while (true);
-
-
-
-
         }
 
 
-        static void Attack() {
+        static void Attack()
+        {
 
             bool validNumberForList = false;
 
@@ -117,10 +132,12 @@ namespace Text_RPG {
             Thread.Sleep(Numbers.shortWait);
             Texts.ShowInventory(true, false);
 
-            do {
+            do
+            {
 
                 //makes sure that the input was a number
-                do {
+                do
+                {
 
                     Console.BackgroundColor = ConsoleColor.Red;
                     Console.WriteLine("Please enter a number");
@@ -138,7 +155,8 @@ namespace Text_RPG {
 
                 if (ninput > 0 && ninput <= Player.weapons.Count)
                     validNumberForList = true;
-                else {
+                else
+                {
                     Console.BackgroundColor = ConsoleColor.Red;
                     Console.WriteLine("Please enter a number that is listed above");
                     Console.BackgroundColor = ConsoleColor.Black;
@@ -152,36 +170,40 @@ namespace Text_RPG {
             Weapon w = Player.weapons[ninput - 1];
             Console.WriteLine("You've attacked with " + w.name + " and did " + w.damage + " damage. " + randomCoolWord());
 
-            fields[arrayNumber].monsterDamage -= w.damage;
+            fields[arrayNumber].monsterHealth -= w.damage;
 
-            Defend();
+            if (fields[arrayNumber].monsterHealth > 0)
+                Defend();
 
-
-
-            //test whether entereing a number too hight for the list and too low
-
+            else
+                B1();
         }
 
-        static void Defend() {
+        static void Defend()
+        {
 
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("The monster just hit you and dealt " + fields[arrayNumber].monsterDamage + " damage.");
             Console.ForegroundColor = ConsoleColor.White;
+
+            Player.health -= fields[arrayNumber].monsterDamage;
 
             Console.WriteLine("You have {0} health. The monster has {1} health", Player.health, fields[arrayNumber].monsterHealth);
 
             Console.BackgroundColor = ConsoleColor.Red;
             Console.WriteLine("Press any button to continue");
             Console.BackgroundColor = ConsoleColor.Black;
-            Console.ReadLine()
+            Console.ReadLine();
 
         }
 
-        public static void Potion() {
+        public static void Potion()
+        {
 
         }
 
-        static string randomCoolWord() {
+        static string randomCoolWord()
+        {
 
             string[] words = new string[] { "Cool!", "Epic!", "Awesome!", "Nice!", "Right on!" };
 
@@ -193,7 +215,8 @@ namespace Text_RPG {
     }
 
 
-    class Field {
+    class Field
+    {
 
         public int monsterHealth;
         public int monsterDamage;
@@ -204,7 +227,8 @@ namespace Text_RPG {
         /// Returns if the monster dead
         /// </summary>
         /// <returns></returns>
-        public bool MonsterDead() {
+        public bool MonsterDead()
+        {
             if (monsterHealth <= 0)
                 return true;
             else
