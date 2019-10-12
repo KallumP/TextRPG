@@ -9,6 +9,7 @@ namespace Text_RPG {
         public static int health = 100;
         public static List<Weapon> weapons = new List<Weapon>();
         public static int healthPotions = 2;
+        public static string location;
     }
 
     class Weapon {

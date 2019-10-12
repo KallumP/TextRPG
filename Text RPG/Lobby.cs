@@ -17,6 +17,8 @@ namespace Text_RPG {
         /// </summary>
         static public void Choice() {
 
+            Player.location = "Base";
+
             //keeps asking for an input until there is a correct input 
             do {
 

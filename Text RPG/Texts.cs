@@ -13,7 +13,6 @@ namespace Text_RPG {
         /// </summary>
         public static void Intro() {
 
-
             bool validInput = false;
             bool skip = false;
             string inp;
@@ -224,7 +223,6 @@ namespace Text_RPG {
 
             //goes to the lobby
             Battle.B1();
-
         }
 
         /// <summary>
