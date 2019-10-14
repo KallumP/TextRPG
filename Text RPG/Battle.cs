@@ -48,6 +48,73 @@ namespace Text_RPG
             fields[7].monsterDamage = 0;
             fields[8].monsterDamage = 30;
 
+            fields[0].awardMoney = 10;
+            fields[1].awardMoney = 30;
+            fields[2].awardMoney = 50;
+            fields[3].awardMoney = 75;
+            fields[4].awardMoney = 100;
+            fields[5].awardMoney = 0;
+            fields[6].awardMoney = 0;
+            fields[7].awardMoney = 0;
+            fields[8].awardMoney = 5000;
+
+        }
+
+        /// <summary>
+        /// Lets the user choose what they want to do when entering the field
+        /// </summary>
+        static void BattleChoice()
+        {
+            //writes out where the player is
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.WriteLine(Player.location);
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine();
+
+            Console.WriteLine("You see a grizzly monster infront of you!");
+            Thread.Sleep(Numbers.shortWait);
+            Console.WriteLine("What will you do?");
+            Thread.Sleep(Numbers.shortWait);
+            Console.WriteLine("1. Attack");
+            Thread.Sleep(Numbers.shortWait);
+            Console.WriteLine("2. Potion");
+            Thread.Sleep(Numbers.shortWait);
+            Console.WriteLine("3. View Map/Inventory");
+            Thread.Sleep(Numbers.shortWait);
+            Console.WriteLine("4. Return to base");
+
+            //makes sure that the input was a number
+            do
+            {
+
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.WriteLine("Please enter a number");
+                Console.BackgroundColor = ConsoleColor.Black;
+
+                //gets the input
+                Console.ForegroundColor = ConsoleColor.Green;
+                input = Console.ReadLine();
+
+                Console.ForegroundColor = ConsoleColor.White;
+
+            } while (!Int32.TryParse(input, out ninput));
+
+            switch (ninput)
+            {
+                case 1:
+
+                    Attack();
+
+                    break;
+
+                case 2:
+                    Potion();
+                    break;
+
+                case 3:
+                    Texts.Map();
+                    break;
+            }
         }
 
         /// <summary>
@@ -104,11 +171,22 @@ namespace Text_RPG
 
             fields[arrayNumber].monsterHealth -= w.damage;
 
+            //checks to see if the monster is alive
             if (!fields[arrayNumber].MonsterDead())
-                Defend();
 
+                //lets the player defend against the monsters attacks
+                Defend();
             else
-                B1();
+            {
+                Console.WriteLine("You killed the monster! " + randomCoolWord());
+
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.WriteLine("Press any button to continue (not the power button!)");
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.ReadLine();
+                Console.Clear();
+            }
+
         }
 
         /// <summary>
@@ -129,6 +207,7 @@ namespace Text_RPG
             Console.WriteLine("Press any button to continue");
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ReadLine();
+            Console.Clear();
 
         }
 
@@ -167,15 +246,14 @@ namespace Text_RPG
             return words[rnd.Next(0, words.Length)];
         }
 
-
+        /// <summary>
+        /// The sequence for entering battle field 1
+        /// </summary>
         public static void B1()
         {
-            Player.location = "B1";
 
-            Console.BackgroundColor = ConsoleColor.Red;
-            Console.WriteLine("B1");
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.WriteLine();
+            //sets up the player "location" and the index variable
+            Player.location = "B1";
             arrayNumber = 0;
 
             do
@@ -184,18 +262,28 @@ namespace Text_RPG
                 //there are always two different options if 
                 if (!fields[arrayNumber].MonsterDead())
                 {
+                    BattleChoice();
+                }
+                else
+                {
 
-                    Console.WriteLine("You see a grizzly monster infront of you!");
+                    //Gives the user the money
+                    if (!fields[1].itemPickedUp)
+                        Player.money += fields[1].awardMoney;
+
+                    Console.WriteLine("A large monster lays infront of you");
+                    Console.WriteLine("The only option left is to go to a new area");
                     Thread.Sleep(Numbers.shortWait);
-                    Console.WriteLine("What will you do?");
+                    Console.WriteLine("You can go in three directions");
                     Thread.Sleep(Numbers.shortWait);
-                    Console.WriteLine("1. Attack");
+                    Console.WriteLine("1. Battle Field 2");
                     Thread.Sleep(Numbers.shortWait);
-                    Console.WriteLine("2. Potion");
+                    Console.WriteLine("2. Battle Field 3");
                     Thread.Sleep(Numbers.shortWait);
-                    Console.WriteLine("3. View Map/Inventory");
+                    Console.WriteLine("3. Base");
                     Thread.Sleep(Numbers.shortWait);
-                    Console.WriteLine("4. Return to base");
+                    Console.WriteLine("4. View Map/Inventory");
+                    Thread.Sleep(Numbers.shortWait);
 
                     //makes sure that the input was a number
                     do
@@ -217,22 +305,216 @@ namespace Text_RPG
                     {
                         case 1:
 
-                            Attack();
-
+                            B2();
                             break;
 
                         case 2:
-                            Potion();
+                            B3();
                             break;
 
                         case 3:
-                            Texts.Map();
+                            Lobby.Choice();
+                            Console.Clear();
                             break;
 
+                        case 4:
+                            Texts.Map();
+                            break;
                     }
+                }
+
+            } while (true);
+        }
+
+        /// <summary>
+        /// The sequence for entering battle field 2
+        /// </summary>
+        public static void B2()
+        {
+
+            //sets up the player "location" and the index variable
+            Player.location = "B2";
+            arrayNumber = 1;
+
+            do
+            {
+
+                //there are always two different options if 
+                if (!fields[arrayNumber].MonsterDead())
+                {
+                    BattleChoice();
                 }
                 else
                 {
+
+                    //Gives the user the money
+                    if (!fields[1].itemPickedUp)
+                        Player.money += fields[1].awardMoney;
+
+                    Console.WriteLine("A large monster lays infront of you");
+                    Console.WriteLine("The only option left is to go to a new area");
+                    Thread.Sleep(Numbers.shortWait);
+                    Console.WriteLine("You can go in three directions");
+                    Thread.Sleep(Numbers.shortWait);
+                    Console.WriteLine("1. Battle Field 4");
+                    Thread.Sleep(Numbers.shortWait);
+                    Console.WriteLine("2. Dungeon 1");
+                    Thread.Sleep(Numbers.shortWait);
+                    Console.WriteLine("3. Battle Field 1");
+                    Thread.Sleep(Numbers.shortWait);
+                    Console.WriteLine("4. View Map/Inventory");
+                    Thread.Sleep(Numbers.shortWait);
+
+                    //makes sure that the input was a number
+                    do
+                    {
+
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Please enter a number");
+                        Console.BackgroundColor = ConsoleColor.Black;
+
+                        //gets the input
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        input = Console.ReadLine();
+
+                        Console.ForegroundColor = ConsoleColor.White;
+
+                    } while (!Int32.TryParse(input, out ninput));
+
+                    switch (ninput)
+                    {
+                        case 1:
+
+                            B4();
+                            break;
+
+                        case 2:
+                            B3();
+                            break;
+
+                        case 3:
+                            B1();
+                            break;
+
+                        case 4:
+                            Texts.Map();
+                            break;
+                    }
+                }
+
+            } while (true);
+        }
+
+        /// <summary>
+        /// The sequence for entering battle field 3
+        /// </summary>
+        public static void B3()
+        {
+
+            //sets up the player "location" and the index variable
+            Player.location = "B3";
+            arrayNumber = 2;
+
+            do
+            {
+
+                //there are always two different options if 
+                if (!fields[arrayNumber].MonsterDead())
+                {
+
+                    //lets the user choose what to do when confronted by the monster
+                    BattleChoice();
+                }
+                else
+                {
+
+                    //Gives the user the money
+                    if (!fields[1].itemPickedUp)
+                        Player.money += fields[1].awardMoney;
+
+                    Console.WriteLine("A large monster lays infront of you");
+                    Console.WriteLine("The only option left is to go to a new area");
+                    Thread.Sleep(Numbers.shortWait);
+                    Console.WriteLine("You can go in three directions");
+                    Thread.Sleep(Numbers.shortWait);
+                    Console.WriteLine("1. Battle Field 5");
+                    Thread.Sleep(Numbers.shortWait);
+                    Console.WriteLine("2. Dungeon 1");
+                    Thread.Sleep(Numbers.shortWait);
+                    Console.WriteLine("3. Battle Field 1");
+                    Thread.Sleep(Numbers.shortWait);
+                    Console.WriteLine("4. View Map/Inventory");
+                    Thread.Sleep(Numbers.shortWait);
+
+
+                    //makes sure that the input was a number
+                    do
+                    {
+
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Please enter a number");
+                        Console.BackgroundColor = ConsoleColor.Black;
+
+                        //gets the input
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        input = Console.ReadLine();
+
+                        Console.ForegroundColor = ConsoleColor.White;
+
+                    } while (!Int32.TryParse(input, out ninput));
+
+                    switch (ninput)
+                    {
+                        case 1:
+
+                            B5();
+                            break;
+
+                        case 2:
+                            B3();
+                            break;
+
+                        case 3:
+                            Lobby.Choice();
+                            Console.Clear();
+                            break;
+
+                        case 4:
+                            Texts.Map();
+                            break;
+                    }
+                }
+
+            } while (true);
+        }
+
+        /// <summary>
+        /// The sequence for entering battle field 4
+        /// </summary>
+        public static void B4()
+        {
+
+            //sets up the player "location" and the index variable
+            Player.location = "B4";
+            arrayNumber = 2;
+
+            do
+            {
+
+                //there are always two different options if 
+                if (!fields[arrayNumber].MonsterDead())
+                {
+
+                    //lets the user choose what to do when confronted by the monster
+                    BattleChoice();
+                }
+                else
+                {
+
+                    //Gives the user the money
+                    if (!fields[1].itemPickedUp)
+                        Player.money += fields[1].awardMoney;
+
                     Console.WriteLine("A large monster lays infront of you");
                     Console.WriteLine("The only option left is to go to a new area");
                     Thread.Sleep(Numbers.shortWait);
@@ -240,9 +522,7 @@ namespace Text_RPG
                     Thread.Sleep(Numbers.shortWait);
                     Console.WriteLine("1. Battle Field 2");
                     Thread.Sleep(Numbers.shortWait);
-                    Console.WriteLine("2. Battle Field 3");
-                    Thread.Sleep(Numbers.shortWait);
-                    Console.WriteLine("3. Base");
+                    Console.WriteLine("2. Dungeon 2");
                     Thread.Sleep(Numbers.shortWait);
                     Console.WriteLine("3. View Map/Inventory");
                     Thread.Sleep(Numbers.shortWait);
@@ -269,45 +549,115 @@ namespace Text_RPG
                         case 1:
 
                             B2();
-
                             break;
 
                         case 2:
-                            B3();
+                            D2();
                             break;
 
                         case 3:
                             Texts.Map();
                             break;
-
                     }
-
                 }
 
             } while (true);
         }
 
-        public static void B2()
-        {
-
-        }
-
-        public static void B3()
-        {
-
-        }
-
-        public static void B4()
-        {
-
-        }
-
+        /// <summary>
+        /// The sequence for entering battle field 5
+        /// </summary>
         public static void B5()
         {
 
+            //sets up the player "location" and the index variable
+            Player.location = "B5";
+            arrayNumber = 3;
+
+            do
+            {
+
+                //there are always two different options if 
+                if (!fields[arrayNumber].MonsterDead())
+                {
+
+                    //lets the user choose what to do when confronted by the monster
+                    BattleChoice();
+                }
+                else
+                {
+
+                    //Gives the user the money
+                    if (!fields[1].itemPickedUp)
+                        Player.money += fields[1].awardMoney;
+
+                    Console.WriteLine("A large monster lays infront of you");
+                    Console.WriteLine("The only option left is to go to a new area");
+                    Thread.Sleep(Numbers.shortWait);
+                    Console.WriteLine("You can go in three directions");
+                    Thread.Sleep(Numbers.shortWait);
+                    Console.WriteLine("1. Battle Field 3");
+                    Thread.Sleep(Numbers.shortWait);
+                    Console.WriteLine("2. Dungeon 3");
+                    Thread.Sleep(Numbers.shortWait);
+                    Console.WriteLine("3. View Map/Inventory");
+                    Thread.Sleep(Numbers.shortWait);
+
+
+                    //makes sure that the input was a number
+                    do
+                    {
+
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Please enter a number");
+                        Console.BackgroundColor = ConsoleColor.Black;
+
+                        //gets the input
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        input = Console.ReadLine();
+
+                        Console.ForegroundColor = ConsoleColor.White;
+
+                    } while (!Int32.TryParse(input, out ninput));
+
+                    switch (ninput)
+                    {
+                        case 1:
+
+                            B3();
+                            break;
+
+                        case 2:
+                            D3();
+                            break;
+
+                        case 3:
+                            Texts.Map();
+                            break;
+                    }
+                }
+
+            } while (true);
         }
 
+        public static void D1()
+        {
+            Player.location = "D1";
 
+            arrayNumber = 3;
+        }
+
+        public static void D2()
+        {
+
+        }
+
+        public static void D3() { 
+        
+        }
+        public static void D4() {
+        
+        }
         class Field
         {
 
@@ -315,6 +665,7 @@ namespace Text_RPG
             public int monsterDamage;
             public bool itemPickedUp;
             public bool completed;
+            public int awardMoney;
 
             /// <summary>
             /// Returns if the monster is dead

@@ -19,3 +19,13 @@ C:\Users\User\Documents\Coding\TextRPG\Text RPG\bin\Debug\netcoreapp2.1\Text RPG
 C:\Users\User\Documents\Coding\TextRPG\Text RPG\bin\Debug\netcoreapp2.1\Text RPG.runtimeconfig.dev.json
 C:\Users\User\Documents\Coding\TextRPG\Text RPG\bin\Debug\netcoreapp2.1\Text RPG.dll
 C:\Users\User\Documents\Coding\TextRPG\Text RPG\bin\Debug\netcoreapp2.1\Text RPG.pdb
+C:\Users\Me\Documents\Code\TextRPG\Text RPG\bin\Debug\netcoreapp2.1\Text RPG.deps.json
+C:\Users\Me\Documents\Code\TextRPG\Text RPG\bin\Debug\netcoreapp2.1\Text RPG.runtimeconfig.json
+C:\Users\Me\Documents\Code\TextRPG\Text RPG\bin\Debug\netcoreapp2.1\Text RPG.runtimeconfig.dev.json
+C:\Users\Me\Documents\Code\TextRPG\Text RPG\bin\Debug\netcoreapp2.1\Text RPG.dll
+C:\Users\Me\Documents\Code\TextRPG\Text RPG\bin\Debug\netcoreapp2.1\Text RPG.pdb
+C:\Users\Me\Documents\Code\TextRPG\Text RPG\obj\Debug\netcoreapp2.1\Text RPG.csprojAssemblyReference.cache
+C:\Users\Me\Documents\Code\TextRPG\Text RPG\obj\Debug\netcoreapp2.1\Text RPG.AssemblyInfoInputs.cache
+C:\Users\Me\Documents\Code\TextRPG\Text RPG\obj\Debug\netcoreapp2.1\Text RPG.AssemblyInfo.cs
+C:\Users\Me\Documents\Code\TextRPG\Text RPG\obj\Debug\netcoreapp2.1\Text RPG.dll
+C:\Users\Me\Documents\Code\TextRPG\Text RPG\obj\Debug\netcoreapp2.1\Text RPG.pdb
