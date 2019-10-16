@@ -80,8 +80,6 @@ namespace Text_RPG
             Console.WriteLine("2. Potion");
             Thread.Sleep(Numbers.shortWait);
             Console.WriteLine("3. View Map/Inventory");
-            Thread.Sleep(Numbers.shortWait);
-            Console.WriteLine("4. Return to base");
 
             //makes sure that the input was a number
             do
@@ -180,11 +178,7 @@ namespace Text_RPG
             {
                 Console.WriteLine("You killed the monster! " + randomCoolWord());
 
-                Console.BackgroundColor = ConsoleColor.Red;
-                Console.WriteLine("Press any button to continue (not the power button!)");
-                Console.BackgroundColor = ConsoleColor.Black;
-                Console.ReadLine();
-                Console.Clear();
+                Texts.PressAnyButton();
             }
 
         }
@@ -203,11 +197,7 @@ namespace Text_RPG
 
             Console.WriteLine("You have {0} health. The monster has {1} health", Player.health, fields[arrayNumber].monsterHealth);
 
-            Console.BackgroundColor = ConsoleColor.Red;
-            Console.WriteLine("Press any button to continue");
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.ReadLine();
-            Console.Clear();
+            Texts.PressAnyButton();
 
         }
 
@@ -227,8 +217,6 @@ namespace Text_RPG
             //removes one potion from the inventory
             Player.healthPotions--;
 
-            //goes back to the battle sequence
-            B1();
         }
 
         /// <summary>
@@ -305,16 +293,19 @@ namespace Text_RPG
                     {
                         case 1:
 
+                            Texts.TravelTo("B2");
                             B2();
                             break;
 
                         case 2:
+
+                            Texts.TravelTo("B3");
                             B3();
                             break;
 
                         case 3:
-                            Lobby.Choice();
-                            Console.Clear();
+
+                            Texts.TravelTo("lobby");
                             break;
 
                         case 4:
@@ -385,18 +376,24 @@ namespace Text_RPG
                     {
                         case 1:
 
+                            Texts.TravelTo("B4");
                             B4();
                             break;
 
                         case 2:
+
+                            Texts.TravelTo("B3");
                             B3();
                             break;
 
                         case 3:
+
+                            Texts.TravelTo("B1");
                             B1();
                             break;
 
                         case 4:
+
                             Texts.Map();
                             break;
                     }
@@ -467,16 +464,30 @@ namespace Text_RPG
                     {
                         case 1:
 
+                            Texts.TravelTo("B5");
                             B5();
                             break;
 
                         case 2:
-                            B3();
+                            if (Player.d1Key)
+                            {
+                                Texts.TravelTo("D1");
+                                D1();
+                            }
+                                
+                            else
+                            {
+                                Console.WriteLine("You cannot enter here without a key...");
+                                Texts.PressAnyButton();
+                            }
+
+
                             break;
 
                         case 3:
-                            Lobby.Choice();
-                            Console.Clear();
+
+                            Texts.TravelTo("B1");
+                            B1();
                             break;
 
                         case 4:
@@ -548,11 +559,12 @@ namespace Text_RPG
                     {
                         case 1:
 
+                            Texts.TravelTo("B2");
                             B2();
                             break;
 
                         case 2:
-                            D2();
+                            //say you cant go and have press key to continue
                             break;
 
                         case 3:
@@ -589,7 +601,11 @@ namespace Text_RPG
 
                     //Gives the user the money
                     if (!fields[1].itemPickedUp)
+                    {
                         Player.money += fields[1].awardMoney;
+                        Player.d1Key = true;
+                    }
+
 
                     Console.WriteLine("A large monster lays infront of you");
                     Console.WriteLine("The only option left is to go to a new area");
@@ -624,11 +640,13 @@ namespace Text_RPG
                     {
                         case 1:
 
+                            Texts.TravelTo("B3");
                             B3();
                             break;
 
                         case 2:
-                            D3();
+
+                            //say you cant go and have press key to continue
                             break;
 
                         case 3:
@@ -645,6 +663,9 @@ namespace Text_RPG
             Player.location = "D1";
 
             arrayNumber = 3;
+
+            Console.WriteLine("You are in the dungeon");
+            Console.ReadLine();
         }
 
         public static void D2()
@@ -652,11 +673,13 @@ namespace Text_RPG
 
         }
 
-        public static void D3() { 
-        
+        public static void D3()
+        {
+
         }
-        public static void D4() {
-        
+        public static void D4()
+        {
+
         }
         class Field
         {

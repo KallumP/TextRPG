@@ -3,35 +3,41 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace Text_RPG {
-    static class Texts {
+namespace Text_RPG
+{
+    static class Texts
+    {
 
         static bool firstTime = true;
 
         /// <summary>
         /// The intro to the game
         /// </summary>
-        public static void Intro() {
+        public static void Intro()
+        {
 
             bool validInput = false;
             bool skip = false;
             string inp;
 
             //Checks to see if this is the first time the game is played
-            if (firstTime) {
+            if (firstTime)
+            {
 
                 //sets this variable such that the game knows its no longer the first time
                 firstTime = false;
 
                 //keeps asking until the player enters a valid input
-                do {
+                do
+                {
 
                     //asks the user if they want to see the intro
                     Console.WriteLine("Would you like to see the intro (Y/N)");
                     inp = Console.ReadLine().ToLower();
 
                     //checks to see if the input was valid
-                    if (inp == "y" || inp == "n") {
+                    if (inp == "y" || inp == "n")
+                    {
 
                         //sets the boolean depending on what the user chose
                         if (inp == "y")
@@ -42,7 +48,9 @@ namespace Text_RPG {
                         //allows the player to leave this section
                         validInput = true;
 
-                    } else {
+                    }
+                    else
+                    {
 
                         //lets the user know what they need to enter
                         Console.Clear();
@@ -58,7 +66,8 @@ namespace Text_RPG {
             Console.Clear();
 
             //shows the intro if the player chose to see it
-            if (!skip) {
+            if (!skip)
+            {
                 Console.WriteLine("In the year 3046, a great war broke out.");
                 Thread.Sleep(Numbers.longWait);
                 Console.WriteLine("All technology was destroyed");
@@ -85,7 +94,8 @@ namespace Text_RPG {
                 Thread.Sleep(Numbers.longWait);
                 Console.Write("Go out there and fight");
                 Thread.Sleep(Numbers.longWait);
-            } else
+            }
+            else
                 Console.Write("Intro Skipped");
 
             //lets the user read the intro
@@ -109,7 +119,8 @@ namespace Text_RPG {
         /// <summary>
         /// The tutorial for the battle sequences
         /// </summary>
-        public static void Tutorial() {
+        public static void Tutorial()
+        {
 
             bool validInput = false;
             bool skip = true;
@@ -119,14 +130,16 @@ namespace Text_RPG {
             firstTime = false;
 
             //keeps asking until the player enters a valid input
-            do {
+            do
+            {
 
                 //asks the user if they want to see the intro
                 Console.WriteLine("Would you like to see the battle tutorial (Y/N)");
                 inp = Console.ReadLine().ToLower();
 
                 //checks to see if the input was valid
-                if (inp == "y" || inp == "n") {
+                if (inp == "y" || inp == "n")
+                {
 
                     //sets the boolean depending on what the user chose
                     if (inp == "y")
@@ -137,7 +150,9 @@ namespace Text_RPG {
                     //allows the player to leave this section
                     validInput = true;
 
-                } else {
+                }
+                else
+                {
 
                     //lets the user know what they need to enter
                     Console.Clear();
@@ -152,7 +167,8 @@ namespace Text_RPG {
             Console.Clear();
 
             //shows the tutorial if the player choose to see it
-            if (!skip) {
+            if (!skip)
+            {
                 Console.WriteLine("You are about to enter the battle fields");
                 Thread.Sleep(Numbers.longWait);
                 Console.WriteLine("This is a dangerous place");
@@ -204,7 +220,8 @@ namespace Text_RPG {
                 Thread.Sleep(Numbers.longWait);
                 Console.Write("Good Luck");
                 Thread.Sleep(Numbers.longWait);
-            } else
+            }
+            else
                 Console.Write("Tutorial skipped");
 
             //lets the user read the intro
@@ -228,7 +245,8 @@ namespace Text_RPG {
         /// <summary>
         /// Shows the map and inventory
         /// </summary>
-        public static void Map() {
+        public static void Map()
+        {
 
             //shows the map
             Console.WriteLine("This is a map of the locations");
@@ -255,12 +273,22 @@ namespace Text_RPG {
             //shows inventory with potions
             ShowInventory(true, true);
 
+            PressAnyButton();
+
+        }
+
+        /// <summary>
+        /// Tells the user to press any button
+        /// </summary>
+        public static void PressAnyButton()
+        {
             Console.BackgroundColor = ConsoleColor.Red;
             Console.WriteLine("Press any button to continue (not the power button!)");
             Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.White;
             Console.Clear();
-
         }
 
         /// <summary>
@@ -268,15 +296,18 @@ namespace Text_RPG {
         /// </summary>
         /// <param name="withWeapons">Whether you want to show the weapons</param>
         /// <param name="withPotions">Whether you want to show the potions</param>
-        public static void ShowInventory(bool withWeapons, bool withPotions) {
+        public static void ShowInventory(bool withWeapons, bool withPotions)
+        {
 
             //shows the players inventory
             Console.WriteLine("This is your current inventory");
             Thread.Sleep(Numbers.shortWait);
 
-            if (withWeapons) {
+            if (withWeapons)
+            {
                 //goes through each weapon in the players inventory and lists them out
-                for (int i = 1; i <= Player.weapons.Count; i++) {
+                for (int i = 1; i <= Player.weapons.Count; i++)
+                {
 
                     Console.WriteLine(i.ToString() + ". " + Player.weapons[i - 1].name);
                     Thread.Sleep(Numbers.shortWait);
@@ -284,10 +315,27 @@ namespace Text_RPG {
             }
 
 
-            if (withPotions) {
+            if (withPotions)
+            {
                 Console.WriteLine(Player.healthPotions + "x Health Potions");
                 Thread.Sleep(Numbers.shortWait);
             }
+        }
+
+        /// <summary>
+        /// Writes out a threaded message showing what place the player is going to
+        /// </summary>
+        /// <param name="destination">The destination name</param>
+        public static void TravelTo(string destination)
+        {
+            Console.Write("Traveling to " + destination);
+            Thread.Sleep(Numbers.shortWait);
+            Console.Write(".");
+            Thread.Sleep(Numbers.shortWait);
+            Console.Write(".");
+            Thread.Sleep(Numbers.shortWait);
+            Console.WriteLine(".");
+            Console.Clear();
         }
     }
 }

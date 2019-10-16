@@ -153,10 +153,7 @@ namespace Text_RPG
             else
                 Console.WriteLine("You already have this weapon");
 
-            //gives the user time to read the text
-            Console.WriteLine("Press any button to continue (not the power button!)");
-            Console.ReadLine();
-            Console.Clear();
+            Texts.PressAnyButton();
 
         }
 
@@ -184,10 +181,7 @@ namespace Text_RPG
             else
                 Console.WriteLine("You have too many potions already!");
 
-            //gives the user time to read the text
-            Console.WriteLine("Press any button to continue (not the power button!)");
-            Console.ReadLine();
-            Console.Clear();
+            Texts.PressAnyButton();
         }
     }
 }

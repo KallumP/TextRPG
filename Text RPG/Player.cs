@@ -10,6 +10,8 @@ namespace Text_RPG {
         public static List<Weapon> weapons = new List<Weapon>();
         public static int healthPotions = 2;
         public static string location;
+
+        public static bool d1Key = false;
     }
 
     class Weapon {
